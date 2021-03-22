@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/kami8ma8810/gulp-webpack-new/issues"
   },
-  "homepage": "https://github.com/kami8ma8810/gulp-webpack-new#readme"
+  "homepage": "https://github.com/kami8ma8810/gulp-webpack-new#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.14",
+    "gulp": "^4.0.2",
+    "gulp-dart-sass": "^1.0.2",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.1"
+  }
 }
