@@ -1,28 +1,39 @@
 {
-  "name": "gulp-webpack-new",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kami8ma8810/gulp-webpack-new.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kami8ma8810/gulp-webpack-new/issues"
-  },
-  "homepage": "https://github.com/kami8ma8810/gulp-webpack-new#readme",
-  "devDependencies": {
-    "browser-sync": "^2.26.14",
-    "gulp": "^4.0.2",
-    "gulp-dart-sass": "^1.0.2",
-    "gulp-htmlmin": "^5.0.1",
-    "gulp-notify": "^3.2.0",
-    "gulp-plumber": "^1.2.1"
-  }
+	"name": "gulp-webpack-new",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kami8ma8810/gulp-webpack-new.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/kami8ma8810/gulp-webpack-new/issues"
+	},
+	"homepage": "https://github.com/kami8ma8810/gulp-webpack-new#readme",
+	"devDependencies": {
+		"autoprefixer": "^10.2.5",
+		"browser-sync": "^2.26.14",
+		"css-declaration-sorter": "^6.0.2",
+		"gulp": "^4.0.2",
+		"gulp-dart-sass": "^1.0.2",
+		"gulp-group-css-media-queries": "^1.2.2",
+		"gulp-htmlmin": "^5.0.1",
+		"gulp-notify": "^3.2.0",
+		"gulp-plumber": "^1.2.1",
+		"gulp-postcss": "^9.0.0",
+		"postcss": "^8.2.8"
+	},
+	"browserslist": [
+		"last 3 version",
+		"IE >= 11",
+		"Firefox ESR",
+		"> 1% in JP"
+	]
 }

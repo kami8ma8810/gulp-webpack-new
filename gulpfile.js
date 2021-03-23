@@ -3,11 +3,15 @@ const gulp = require('gulp');
 // html
 const htmlMin = require('gulp-htmlmin');
 
-//scss
+//Sass
 const sass = require('gulp-dart-sass');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const browserSync = require('browser-sync');
+const postCss = require("gulp-postcss");
+const autoprefixer = require("autoprefixer");
+const cssDeclSort = require("css-declaration-sorter");
+const gcmq = require("gulp-group-css-media-queries");
 
 // アクティブフォルダ
 const srcBase = './_static/src';
@@ -28,7 +32,7 @@ const htmlFormat = () => {
 	return gulp.src(srcPath.html)
 		.pipe(
 			plumber({
-				errorHandler: notify.onError("Error: <%= error.message %>"),
+				errorHandler: notify.onError('Error: <%= error.message %>'),
 			})
 		)
 		.pipe(
@@ -41,8 +45,8 @@ const htmlFormat = () => {
 		.pipe(gulp.dest(distPath.html))
 }
 
-// scssコンパイル
-const scssCompile = () => {
+// Sassコンパイル
+const sassCompile = () => {
 	return gulp.src(srcPath.styles, {
 			sourcemaps: true
 		})
@@ -52,14 +56,29 @@ const scssCompile = () => {
 				errorHandler: notify.onError('Error:<%= error.message %>')
 			}))
 		.pipe(sass({
+			//指定できるキー expanded compressed
 			outputStyle: 'expanded'
-		})) //指定できるキー expanded compressed
+		}).on('error', sass.logError))
+		.pipe(
+			postCss([
+				//対象ブラウザはpackage.jsonに記述
+				autoprefixer({
+					cascade: false,
+					grid: 'autoplace', // IE11のgrid対応('-ms-')
+				}),
+				//CSSのソート
+				cssDeclSort({
+					order: 'smacss',
+				}),
+			])
+		)
+		.pipe(gcmq()) //メディアクエリをまとめる
 		.pipe(gulp.dest(distPath.styles, {
 			sourcemaps: './'
-		})) //コンパイル先
+		}))
 		.pipe(browserSync.stream())
 		.pipe(notify({
-			message: 'Sassをコンパイルしました！',
+			message: 'Sass Compile Completed!',
 			onLast: true
 		}))
 }
@@ -80,12 +99,12 @@ const browserSyncReload = (done) => {
 
 // ファイル監視・リロード
 const watchFiles = () => {
-	gulp.watch(srcPath.styles, gulp.series(scssCompile))
+	gulp.watch(srcPath.styles, gulp.series(sassCompile))
 	gulp.watch(srcPath.html, gulp.series(htmlFormat, browserSyncReload))
 }
 
 // npx gulp コマンド処理
 exports.default = gulp.series(
-	gulp.parallel(htmlFormat, scssCompile),
+	gulp.parallel(htmlFormat, sassCompile),
 	gulp.parallel(watchFiles, browserSyncFunc)
 );
