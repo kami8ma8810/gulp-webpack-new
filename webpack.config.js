@@ -1,7 +1,11 @@
 const path = require('path');
 
 module.exports = {
-	mode: 'production', //'development' or 'production'
+	//開発（ソースマップ有効）
+	mode: 'development',
+	//本番公開
+	// mode: 'production',
+
 	// メインとなるJavaScriptファイル（エントリーポイント）
 	entry: './_static/src/js/index.js',
 
