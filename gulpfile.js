@@ -7,13 +7,13 @@ const htmlMin = require('gulp-htmlmin');
 const sass = require('gulp-dart-sass');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
-const browserSync = require('browser-sync');
-const postCss = require("gulp-postcss");
-const autoprefixer = require("autoprefixer");
-const cssDeclSort = require("css-declaration-sorter");
-const gcmq = require("gulp-group-css-media-queries");
+const browserSync = require('browser-sync').create(); //create推奨
+const postCss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const cssDeclSort = require('css-declaration-sorter');
+const gcmq = require('gulp-group-css-media-queries');
 
-// アクティブフォルダ
+// gulpアクティブフォルダ
 const srcBase = './_static/src';
 const distBase = './_static/dist';
 // 入力パス
@@ -84,11 +84,15 @@ const sassCompile = () => {
 }
 
 // ローカルサーバー起動
-const browserSyncFunc = () => {
+const browserSyncFunc = (done) => {
 	browserSync.init({
 		notify: false, //接続通知非表示
-		server: './_static/dist/'
+		server: {
+			baseDir: distBase,
+			index: 'index.html'
+		}
 	});
+	done();
 }
 
 // ブラウザリロード
