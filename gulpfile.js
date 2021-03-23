@@ -1,32 +1,49 @@
 const gulp = require('gulp');
 
+// html
+const htmlMin = require('gulp-htmlmin');
+
 //scss
 const sass = require('gulp-dart-sass');
-const plumber = require("gulp-plumber");
-const notify = require("gulp-notify");
-const browserSync = require("browser-sync");
+const plumber = require('gulp-plumber');
+const notify = require('gulp-notify');
+const browserSync = require('browser-sync');
 
-// 入出力するフォルダを指定
+// アクティブフォルダ
 const srcBase = './_static/src';
 const distBase = './_static/dist';
-
-
+// 入力パス
 const srcPath = {
-	'scss': srcBase + '/scss/**/*.scss',
-	'html': srcBase + '/**/*.html'
+	'html': srcBase + '/**/*.html',
+	'styles': srcBase + '/scss/**/*.scss'
 };
-
+// 出力パス
 const distPath = {
-	'css': distBase + '/css/',
-	'html': distBase + '/'
+	'html': distBase + '/',
+	'styles': distBase + '/css/'
 };
 
-/**
- * sass
- *
- */
-const cssSass = () => {
-	return gulp.src(srcPath.scss, {
+// htmlフォーマット
+const htmlFormat = () => {
+	return gulp.src(srcPath.html)
+		.pipe(
+			plumber({
+				errorHandler: notify.onError("Error: <%= error.message %>"),
+			})
+		)
+		.pipe(
+			htmlMin({
+				removeComments: true, //コメントを削除
+				collapseWhitespace: true, //余白を詰める
+				preserveLineBreaks: true, //タグ間の改行を詰める
+			})
+		)
+		.pipe(gulp.dest(distPath.html))
+}
+
+// scssコンパイル
+const scssCompile = () => {
+	return gulp.src(srcPath.styles, {
 			sourcemaps: true
 		})
 		.pipe(
@@ -37,7 +54,7 @@ const cssSass = () => {
 		.pipe(sass({
 			outputStyle: 'expanded'
 		})) //指定できるキー expanded compressed
-		.pipe(gulp.dest(distPath.css, {
+		.pipe(gulp.dest(distPath.styles, {
 			sourcemaps: './'
 		})) //コンパイル先
 		.pipe(browserSync.stream())
@@ -47,50 +64,28 @@ const cssSass = () => {
 		}))
 }
 
-
-/**
- * html
- */
-const html = () => {
-	return gulp.src(srcPath.html)
-		.pipe(gulp.dest(distPath.html))
-}
-
-/**
- * ローカルサーバー立ち上げ
- */
+// ローカルサーバー起動
 const browserSyncFunc = () => {
-	browserSync.init(browserSyncOption);
+	browserSync.init({
+		notify: false, //接続通知非表示
+		server: './_static/dist/'
+	});
 }
 
-const browserSyncOption = {
-	server: "./_static/dist/"
-}
-
-/**
- * リロード
- */
+// ブラウザリロード
 const browserSyncReload = (done) => {
 	browserSync.reload();
 	done();
 }
 
-/**
- *
- * ファイル監視 ファイルの変更を検知したら、browserSyncReloadでreloadメソッドを呼び出す
- * series 順番に実行
- * watch('監視するファイル',処理)
- */
+// ファイル監視・リロード
 const watchFiles = () => {
-	gulp.watch(srcPath.scss, gulp.series(cssSass))
-	gulp.watch(srcPath.html, gulp.series(html, browserSyncReload))
+	gulp.watch(srcPath.styles, gulp.series(scssCompile))
+	gulp.watch(srcPath.html, gulp.series(htmlFormat, browserSyncReload))
 }
 
-/**
- * seriesは「順番」に実行
- * parallelは並列で実行
- */
+// npx gulp コマンド処理
 exports.default = gulp.series(
-	gulp.parallel(html, cssSass),
+	gulp.parallel(htmlFormat, scssCompile),
 	gulp.parallel(watchFiles, browserSyncFunc)
 );
