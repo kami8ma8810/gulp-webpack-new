@@ -6,6 +6,13 @@ module.exports = {
 	//本番公開
 	// mode: 'production',
 
+	// ローカルサーバー
+	devServer: {
+		contentBase: './_static/dist',
+		//openは自動で立ち上げる
+		open: true
+	},
+
 	// メインとなるJavaScriptファイル（エントリーポイント）
 	entry: './_static/src/js/index.js',
 

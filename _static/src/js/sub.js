@@ -1,5 +1,5 @@
 // export文を使ってhello関数を定義する。
 export function hello() {
-	alert("helloメソッドが実行されました！");
+	alert("はろー");
 	console.log("helloメソッドが実行されました！");
 }
