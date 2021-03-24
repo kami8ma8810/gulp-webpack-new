@@ -14,6 +14,7 @@ module.exports = {
 			test: /\.js$/,
 			use: [{
 				loader: 'babel-loader',
+				exclude: /node_modules/,
 				options: {
 					presets: [
 						// プリセット指定でES2020をES5に変換
