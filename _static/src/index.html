@@ -4,9 +4,49 @@
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>はじめてのGulp</title>
-	<link rel="stylesheet" href="css/style.css">
+	<!-- <link rel="stylesheet" href="css/style.css"> -->
+	<style>
+		html,
+		body {
+			height: 100%;
+			overflow: hidden;
+			margin: 0;
+		}
+
+		#container {
+			width: 100%;
+			height: 100%;
+			font-family: 'Ropa Sans', cursive;
+			background: lightslategray;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		#myText {
+			position: relative;
+			text-align: center;
+			font-size: calc(100vw / 30);
+			display: none;
+			/* エフェクト適用前に一瞬見えるのを防ぐため */
+		}
+
+		#myText span {
+			display: inline-block;
+			min-width: 10px;
+			opacity: 0;
+			transform: scale(10);
+		}
+
+		#myText span.motion {
+			opacity: 1;
+			transform: scale(1);
+			transition: all 0.5s;
+		}
+
+	</style>
 </head>
 
 <body>
@@ -16,6 +56,23 @@
 	<button>ボタン</button>
 	<button>ボタン</button>
 	<button>ボタン</button>
+	<div id="container">
+		<p id="myText" style="display: block;"><span class="motion">T</span><span class="motion">h</span><span
+				class="motion">e</span><span class="motion"> </span><span class="motion">q</span><span
+				class="motion">u</span><span class="motion">i</span><span class="motion">c</span><span
+				class="motion">k</span><span class="motion"> </span><span class="motion">b</span><span
+				class="motion">r</span><span class="motion">o</span><span class="motion">w</span><span
+				class="motion">n</span><span class="motion"> </span><span class="motion">f</span><span
+				class="motion">o</span><span class="motion">x</span><span class="motion"> </span><span
+				class="motion">j</span><span class="motion">u</span><span class="motion">m</span><span
+				class="motion">p</span><span class="motion">s</span><span class="motion"> </span><span
+				class="motion">o</span><span class="motion">v</span><span class="motion">e</span><span
+				class="motion">r</span><span class="motion"> </span><span class="motion">t</span><span
+				class="motion">h</span><span class="motion">e</span><span class="motion"> </span><span
+				class="motion">l</span><span class="motion">a</span><span class="motion">z</span><span
+				class="motion">y</span><span class="motion"> </span><span class="motion">d</span><span
+				class="motion">o</span><span class="motion">g</span><span class="motion">.</span></p>
+	</div>
 	<script src="./bundle.js"></script>
 </body>
 
