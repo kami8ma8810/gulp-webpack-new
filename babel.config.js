@@ -5,7 +5,8 @@ module.exports = function (api) {
 		// プリセット指定でES2020をES5に変換
 		'@babel/preset-env',
 		{
-			targets: ['web', 'es5'],
+			'modules': false,
+			'targets': ['web', 'es5'],
 		},
 	];
 
