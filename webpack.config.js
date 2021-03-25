@@ -12,20 +12,12 @@ module.exports = {
 	module: {
 		rules: [{
 			test: /\.js$/,
+			exclude: /node_modules/,
 			use: [{
 				loader: 'babel-loader',
-				exclude: /node_modules/,
-				options: {
-					presets: [
-						// プリセット指定でES2020をES5に変換
-						'@babel/preset-env',
-					],
-				},
 			}, ],
 		}, ],
 	},
-	// ES5（IE11など）向けの指定
-	target: ['web', 'es5'],
 
 	// ファイルの出力設定
 	output: {
