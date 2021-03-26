@@ -7,7 +7,9 @@ module.exports = function (api) {
 				'targets': [
 					'> 1%',
 					'ie 11'
-				]
+				],
+				useBuiltIns: 'usage', //必要なものだけインポート
+				corejs: 3,
 			}]
 		]
 	}

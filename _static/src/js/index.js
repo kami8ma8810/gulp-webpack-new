@@ -1,5 +1,6 @@
+"use strict";
+
 import './myjQuery';
-import 'regenerator-runtime';
 
 const init = async () => {
 	console.log('this is main js.');
@@ -9,6 +10,7 @@ const init = async () => {
 // 以下サンブル文
 // ------------------
 async function asyncFn() {
+	console.log([1, 2, 3].includes(0));
 	console.log('Im async function.');
 }
 init();
