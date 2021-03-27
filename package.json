@@ -6,7 +6,10 @@
 	"scripts": {
 		"build": "webpack",
 		"start": "webpack serve",
-		"watch": "webpack --watch"
+		"watch": "webpack --watch",
+		"dev": "npm run rimraf && npx webpack --config ./webpack.dev.js",
+		"prod": "npm run rimraf && npx webpack --config ./webpack.prod.js",
+		"cleanup": "npx rimraf ./_static/dist/"
 	},
 	"repository": {
 		"type": "git",
@@ -42,6 +45,7 @@
 		"jquery": "^3.6.0",
 		"postcss": "^8.2.8",
 		"regenerator-runtime": "^0.13.7",
+		"rimraf": "^3.0.2",
 		"webpack": "^5.27.2",
 		"webpack-cli": "^4.5.0",
 		"webpack-dev-server": "^3.11.2"
