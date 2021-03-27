@@ -1,16 +1,18 @@
 const path = require('path');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	//開発（ソースマップ有効）
-	// mode: 'development',
+	mode: 'development',
 	//本番公開
-	mode: 'production',
+	// mode: 'production',
 	// ファイルの出力設定
 	output: {
 		//  出力ファイルのディレクトリ名 resolveは絶対パス
 		path: path.resolve(__dirname, '_static', 'dist'),
 		// 出力ファイル名
 		filename: '[name].[chunkhash].js'
+		// filename: '[name].[chunkhash].js' // for production
 	},
 	cache: {
 		type: 'filesystem',
@@ -46,6 +48,13 @@ module.exports = {
 			},
 		],
 	},
+	plugins: [
+		//scriptをbody内に動的に導入
+		new htmlWebpackPlugin({
+			template: './_static/src/index.html',
+			inject: 'body'
+		})
+	],
 
 	// ローカルサーバー
 	devServer: {
