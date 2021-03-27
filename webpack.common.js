@@ -1,12 +1,8 @@
 const path = require('path');
-const htmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-	//開発（ソースマップ有効）
-	// mode: 'development',
-	//本番公開
-	mode: 'production',
-
+module.exports = ({
+	outputFile
+}) => ({
 	entry: './_static/src/js/index.js',
 	// ファイルの出力設定
 	output: {
@@ -41,12 +37,6 @@ module.exports = {
 			},
 		],
 	},
-	plugins: [
-		new htmlWebpackPlugin({
-			template: './_static/src/index.html',
-			inject: 'body'
-		})
-	],
 
 	// ローカルサーバー
 	devServer: {
@@ -70,4 +60,4 @@ module.exports = {
 			config: [__filename]
 		}
 	},
-};
+});
