@@ -10,13 +10,29 @@ module.exports = {
 	entry: './_static/src/js/index.js',
 
 	module: {
-		rules: [{
-			test: /\.js$/,
-			exclude: /node_modules/,
-			use: [{
-				loader: 'babel-loader',
-			}, ],
-		}, ],
+		rules: [
+			// babel
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: [{
+					loader: 'babel-loader',
+				}],
+			},
+			// ESLint
+			{
+				enforce: 'pre',
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: [{
+					loader: 'eslint-loader',
+					options: {
+						fix: true
+					}
+				}],
+
+			},
+		],
 	},
 
 	// ファイルの出力設定

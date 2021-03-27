@@ -2,10 +2,15 @@
 
 import './myjQuery';
 
+const HOGE = async () => {
+	console.log('ホゲホゲ');
+};
+HOGE();
+
 const init = async () => {
 	console.log('this is main js.');
 	await asyncFn();
-}
+};
 // ------------------
 // 以下サンブル文
 // ------------------
@@ -20,7 +25,7 @@ function sampleResolve(value) {
 		setTimeout(() => {
 			resolve(value * 2);
 		}, 5000);
-	})
+	});
 }
 
 function sample() {
