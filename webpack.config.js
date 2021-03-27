@@ -6,6 +6,12 @@ module.exports = {
 	//本番公開
 	mode: 'production',
 
+	cache: {
+		type: 'filesystem',
+		buildDependencies: {
+			config: [__filename]
+		}
+	},
 	// メインとなるJavaScriptファイル（エントリーポイント）
 	entry: './_static/src/js/index.js',
 
