@@ -1,5 +1,6 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const terserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
 	//開発（ソースマップ有効）
@@ -52,9 +53,23 @@ module.exports = {
 		//scriptをbody内に動的に導入
 		new htmlWebpackPlugin({
 			template: './_static/src/index.html',
-			inject: 'body'
+			inject: 'body',
+			minify: {
+				collapseWhitespace: true,
+				keepClosingSlash: true,
+				removeComments: true,
+				removeRedundantAttributes: true,
+				removeScriptTypeAttributes: true,
+				removeStyleLinkTypeAttributes: true,
+				useShortDoctype: true
+			}
 		})
 	],
+	optimization: {
+		minimizer: [
+			new terserPlugin()
+		]
+	},
 
 	// ローカルサーバー
 	devServer: {
@@ -62,6 +77,10 @@ module.exports = {
 		index: 'index.html',
 		//openは自動で立ち上げる
 		open: true,
+		// node_modulesの変更は無視
+		watchOptions: {
+			ignored: /node_modules/,
+		},
 		//コンパイラエラーまたは警告がある場合にブラウザに全画面オーバーレイを表示
 		overlay: {
 			warnings: true,

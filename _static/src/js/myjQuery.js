@@ -20,7 +20,7 @@ arr.map((str, index) => {
 
 // エフェクトの適用
 elements.map((element, index) => {
-	element.delay(40 * index).queue(function () {
+	element.delay(20 * index).queue(function () {
 		$(this).addClass('motion');
 	});
 });
