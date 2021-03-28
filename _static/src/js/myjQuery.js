@@ -1,7 +1,7 @@
-import jQuery from 'jquery';
+// import jQuery from 'jquery';→provide pluginで共通化
 
-// ドルマークに参照を代入(慣習的な $ を使うため)
-const $ = jQuery;
+// ドルマークに参照を代入(慣習的な $ を使うため)→provide pluginで共通化
+// const $ = jQuery;→provide pluginで共通化
 
 // テキストを取得
 const text = $('#myText').text();

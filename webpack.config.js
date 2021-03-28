@@ -1,6 +1,10 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const terserPlugin = require('terser-webpack-plugin');
+const webpack = require('webpack');
+const {
+	ProvidePlugin
+} = require('webpack');
 
 module.exports = {
 	//開発（ソースマップ有効）
@@ -63,6 +67,10 @@ module.exports = {
 				removeStyleLinkTypeAttributes: true,
 				useShortDoctype: true
 			}
+		}),
+		new webpack.ProvidePlugin({
+			'jQuery': 'jquery',
+			$: 'jquery'
 		})
 	],
 	optimization: {
