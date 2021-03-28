@@ -1,16 +1,15 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const terserPlugin = require('terser-webpack-plugin');
-const webpack = require('webpack');
 const {
 	ProvidePlugin
 } = require('webpack');
 
 module.exports = {
 	//開発（ソースマップ有効）
-	mode: 'development',
+	// mode: 'development',
 	//本番公開
-	// mode: 'production',
+	mode: 'production',
 	// ファイルの出力設定
 	output: {
 		//  出力ファイルのディレクトリ名 resolveは絶対パス
@@ -68,15 +67,30 @@ module.exports = {
 				useShortDoctype: true
 			}
 		}),
-		new webpack.ProvidePlugin({
+		new ProvidePlugin({
 			'jQuery': 'jquery',
 			$: 'jquery'
+			// ローカルにある場合は絶対パスpath.~で指定
 		})
 	],
 	optimization: {
 		minimizer: [
 			new terserPlugin()
-		]
+		],
+		// 共通パーツを分離
+		splitChunks: {
+			chunks: 'all',
+			minSize: 0,
+			cacheGroups: {
+				defaultVendors: {
+					name: "vendors",
+					test: /[\\/]node_modules[\\/]/,
+					priority: -10,
+					reuseExistingChunk: true,
+				},
+				default: false,
+			},
+		}
 	},
 
 	// ローカルサーバー

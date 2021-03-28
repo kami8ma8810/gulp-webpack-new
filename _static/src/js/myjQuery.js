@@ -5,7 +5,7 @@
 
 // テキストを取得
 const text = $('#myText').text();
-$('#myText')
+jQuery('#myText')
 	.empty() // 一旦、空にする
 	.show(); // 表示する
 

@@ -18,19 +18,4 @@
 			"always"
 		]
 	}
-	// "plugins": [
-	// 	"@babel"
-	// ],
-	// "parserOptions": {
-	// 	"ecmaVersion": 7,
-	// 	"sourceType": "module",
-	// 	"allowImportExportEverywhere": false,
-	// 	"ecmaFeatures": {
-	// 		"globalReturn": false
-	// 	},
-	// 	"babelOptions": {
-	// 		"configFile": "./babel.config.js"
-	// 	}
-	// },
-	// "globals": {},
 }
