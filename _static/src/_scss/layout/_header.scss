@@ -1,0 +1,18 @@
+@use "../import"as f;
+
+.header {
+	min-height: 100vh;
+	// for IE11
+	min-height: calc(var(--vh, 1vh) * 100);
+	background: f.$colorWhite;
+	// ここまでが100vhの設定
+	display: grid;
+	place-items: center;
+}
+
+.header-title {
+	background-color: #fff;
+	display: inline-block;
+	font-size: 3vw;
+	padding: 1vw;
+}
