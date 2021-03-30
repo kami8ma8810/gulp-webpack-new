@@ -14,8 +14,8 @@ const cssDeclSort = require('css-declaration-sorter');
 const gcmq = require('gulp-group-css-media-queries');
 
 // gulpアクティブフォルダ
-const srcBase = './_static/src';
-const distBase = './_static/dist';
+const srcBase = './src';
+const distBase = './dist';
 // 入力パス
 const srcPath = {
 	'html': srcBase + '/**/*.html',

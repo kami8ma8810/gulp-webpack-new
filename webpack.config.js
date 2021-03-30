@@ -13,7 +13,7 @@ module.exports = {
 	// ファイルの出力設定
 	output: {
 		//  出力ファイルのディレクトリ名 resolveは絶対パス
-		path: path.resolve(__dirname, '_static', 'dist'),
+		path: path.resolve(__dirname, 'dist'),
 		// 出力ファイル名
 		filename: '[name].[chunkhash].js'
 		// filename: '[name].[chunkhash].js' // for production
@@ -25,7 +25,7 @@ module.exports = {
 		}
 	},
 	// メインとなるJavaScriptファイル（エントリーポイント）
-	entry: './_static/src/js/index.js',
+	entry: './src/js/index.js',
 
 	module: {
 		rules: [
@@ -55,7 +55,7 @@ module.exports = {
 	plugins: [
 		//scriptをbody内に動的に導入
 		new htmlWebpackPlugin({
-			template: './_static/src/index.html',
+			template: './src/index.html',
 			inject: 'body',
 			minify: {
 				collapseWhitespace: true,
@@ -95,7 +95,7 @@ module.exports = {
 
 	// ローカルサーバー
 	devServer: {
-		contentBase: path.resolve(__dirname, '_static', 'dist'),
+		contentBase: path.resolve(__dirname, 'dist'),
 		index: 'index.html',
 		//openは自動で立ち上げる
 		open: true,

@@ -10,7 +10,7 @@ module.exports = () => webpackMerge(commonConf({
 	plugins: [
 		//scriptをbody内に動的に導入
 		new htmlWebpackPlugin({
-			template: './_static/src/index.html',
+			template: './src/index.html',
 			inject: 'body'
 		})
 	]

@@ -3,7 +3,7 @@
 import './myjQuery';
 
 const HOGE = async () => {
-	console.log('ホゲホゲ');
+	console.log('ホゲー！');
 };
 HOGE();
 
